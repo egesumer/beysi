@@ -13,7 +13,7 @@ function Modal({ isOpen, onClose, product }) {
           <div className="modal-header">
             <h2 className="modal-title">{product.name}</h2>
             <div className="modal-price-badge">
-              <span className="modal-price">{product.price}</span>
+              <span className="modal-price">{product.price} ₺</span>
             </div>
           </div>
           <div className="modal-image-container">
