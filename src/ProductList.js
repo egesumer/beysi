@@ -308,10 +308,19 @@ function ProductList() {
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
+      // Prevent any unwanted scroll behavior
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
       setIsExiting(true);
       setTimeout(() => {
         setCurrentPage(pageNumber);
         setIsExiting(false);
+        
+        // Maintain scroll position to prevent jumping to end of page
+        window.scrollTo({
+          top: currentScrollPosition,
+          behavior: 'instant'
+        });
       }, 300);
     }
   };
@@ -447,10 +456,15 @@ function ProductList() {
       {totalPages > 1 && (
         <div className="pagination">
           <button 
-            onClick={goToPreviousPage} 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              goToPreviousPage();
+            }}
             className="pagination-arrow" 
             disabled={currentPage === 1}
             aria-label="Önceki sayfa"
+            type="button"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="15,18 9,12 15,6"></polyline>
@@ -461,9 +475,16 @@ function ProductList() {
             {getVisiblePages().map((page, index) => (
               <button
                 key={index}
-                onClick={() => typeof page === 'number' && goToPage(page)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (typeof page === 'number') {
+                    goToPage(page);
+                  }
+                }}
                 className={`page-number ${page === currentPage ? 'active' : ''} ${typeof page !== 'number' ? 'dots' : ''}`}
                 disabled={typeof page !== 'number'}
+                type="button"
               >
                 {page}
               </button>
@@ -471,10 +492,15 @@ function ProductList() {
           </div>
           
           <button 
-            onClick={goToNextPage} 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              goToNextPage();
+            }}
             className="pagination-arrow" 
             disabled={currentPage === totalPages}
             aria-label="Sonraki sayfa"
+            type="button"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="9,18 15,12 9,6"></polyline>

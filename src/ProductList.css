@@ -479,6 +479,17 @@
   border-radius: 50px;
   box-shadow: 0 4px 15px rgba(209, 155, 162, 0.1);
   border: 1px solid rgba(209, 155, 162, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.pagination button {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .pagination-arrow {
