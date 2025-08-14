@@ -237,6 +237,8 @@ function ProductList() {
   const itemsPerPage = 9;
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isRestoringScroll, setIsRestoringScroll] = useState(false);
 
   // Filtreleme fonksiyonu
   const filteredProducts = products.filter(product => {
@@ -305,27 +307,31 @@ function ProductList() {
     setCurrentPage(1);
   }, [selectedCategory, selectedMaterial, selectedStyle, priceRange, sortBy]);
 
+  // Restore scroll position after page content changes
+  useEffect(() => {
+    if (isRestoringScroll && scrollPosition > 0) {
+      // Wait for content to be fully rendered
+      const timer = setTimeout(() => {
+        window.scrollTo(0, scrollPosition);
+        setIsRestoringScroll(false);
+        setScrollPosition(0);
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [currentPage, isRestoringScroll, scrollPosition]);
+
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
       // Capture current scroll position
-      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Set scroll position and restoration flag
+      setScrollPosition(currentScrollTop);
+      setIsRestoringScroll(true);
       
       // Change the page
       setCurrentPage(pageNumber);
-      
-      // Multiple attempts to restore scroll position
-      const restoreScroll = () => {
-        window.scrollTo(0, currentScrollPosition);
-      };
-      
-      // Immediate restoration
-      restoreScroll();
-      
-      // Multiple delayed attempts to ensure restoration
-      requestAnimationFrame(restoreScroll);
-      setTimeout(restoreScroll, 10);
-      setTimeout(restoreScroll, 50);
-      setTimeout(restoreScroll, 100);
     }
   };
 
