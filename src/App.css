@@ -3,6 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 body, html {
@@ -15,6 +19,9 @@ body, html {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
@@ -107,7 +114,7 @@ header::after {
 
 header h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 700;
   color: #4a4036;
   letter-spacing: 3px;
@@ -120,7 +127,7 @@ header h1 {
 
 header p {
   font-family: 'Quicksand', sans-serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 4vw, 1.5rem);
   font-weight: 400;
   color: #7a7068;
   margin: 0;
@@ -183,6 +190,8 @@ header p {
   overflow: hidden;
   letter-spacing: 0.5px;
   opacity: 0.9;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .navbar a::before {
@@ -216,8 +225,6 @@ header p {
   box-shadow: 0 6px 20px rgba(209, 155, 162, 0.2);
   transform: translateY(-1px);
 }
-
-
 
 /* Slideshow - Premium Presentation */
 .slideshow {
@@ -287,7 +294,7 @@ header p {
 
 .slide-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.8rem, 6vw, 3rem);
   font-weight: 700;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 8px rgba(209, 155, 162, 0.4);
@@ -296,7 +303,7 @@ header p {
 
 .slide-subtitle {
   font-family: 'Quicksand', sans-serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   font-weight: 400;
   opacity: 0.95;
   text-shadow: 1px 1px 4px rgba(209, 155, 162, 0.3);
@@ -318,6 +325,8 @@ header p {
   background: transparent;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .indicator.active {
@@ -342,7 +351,7 @@ header p {
 
 .section-header h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 700;
   color: #4a4036;
   margin-bottom: 1.5rem;
@@ -352,7 +361,7 @@ header p {
 
 .section-header p {
   font-family: 'Quicksand', sans-serif;
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-size: clamp(1rem, 3vw, 1.4rem);
   color: #7a7068;
   font-weight: 400;
   letter-spacing: 1px;
@@ -471,6 +480,8 @@ footer::before {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .footer-section .social-icons a:hover {
@@ -519,36 +530,115 @@ footer::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d19ba2'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .left-decoration,
+  .right-decoration {
+    width: 80px;
+    left: 10px;
+    right: 10px;
+  }
+  
+  .navbar {
+    margin: 0 20px;
+    width: calc(100% - 40px);
+    padding: 0.8rem 1.5rem;
+  }
+  
+  .navbar a {
+    margin: 0 1rem;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+  }
+  
+  .slideshow {
+    width: 92%;
+    padding: 2.5rem;
+    margin: 3rem auto;
+  }
+  
+  .slide-container {
+    height: 400px;
+  }
+  
+  .slide-content {
+    padding: 2.5rem 1.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .left-decoration,
   .right-decoration {
     display: none;
   }
 
+  header {
+    padding: 2.5rem 1.5rem;
+    border-radius: 0 0 25px 25px;
+  }
+  
+  header h1 {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    letter-spacing: 2px;
+  }
+  
+  header p {
+    font-size: clamp(0.9rem, 4.5vw, 1.3rem);
+    padding: 0 0.5rem;
+  }
+
   .navbar {
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 1rem;
+    margin: 0 15px;
+    width: calc(100% - 30px);
+    border-radius: 0 0 20px 20px;
     flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
   .navbar a {
-    margin: 0.3rem;
+    margin: 0.2rem;
     font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
   }
   
   .slideshow {
-    width: 95%;
-    margin: 3rem auto;
+    width: 90%;
+    margin: 2.5rem auto;
     padding: 2rem;
+    border-radius: 20px;
   }
   
   .slide-container {
     height: 350px;
+    border-radius: 15px;
   }
   
   .slide-content {
     padding: 2rem 1.5rem;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  .slide-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+  
+  .slide-subtitle {
+    font-size: clamp(0.9rem, 4vw, 1.3rem);
+  }
+  
+  .section-header {
+    margin: 3rem 0 2rem;
+    padding: 0 1.5rem;
+  }
+  
+  .section-header h2 {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+  }
+  
+  .section-header p {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
   }
   
   .footer-content {
@@ -556,30 +646,219 @@ footer::before {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+    padding: 0 1rem;
   }
   
   .footer-section .social-icons {
     justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section .social-icons a {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
 @media (max-width: 480px) {
-
   header {
     padding: 2rem 1rem;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  header h1 {
+    font-size: clamp(1.8rem, 12vw, 2.8rem);
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+  }
+  
+  header p {
+    font-size: clamp(0.8rem, 5vw, 1.1rem);
+    padding: 0;
+  }
+
+  .navbar {
+    padding: 0.6rem 0.8rem;
+    margin: 0 10px;
+    width: calc(100% - 20px);
+    border-radius: 0 0 15px 15px;
+    gap: 0.3rem;
   }
   
   .navbar a {
     font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 0.8rem;
+    margin: 0.1rem;
+    border-radius: 18px;
   }
   
   .slideshow {
+    width: 95%;
     padding: 1.5rem;
+    margin: 2rem auto;
+    border-radius: 15px;
   }
   
   .slide-container {
     height: 300px;
+    border-radius: 12px;
+  }
+  
+  .slide-content {
+    padding: 1.5rem 1rem;
+    border-radius: 0 0 12px 12px;
+  }
+  
+  .slide-title {
+    font-size: clamp(1.4rem, 8vw, 2rem);
+    margin-bottom: 0.8rem;
+  }
+  
+  .slide-subtitle {
+    font-size: clamp(0.8rem, 4.5vw, 1.1rem);
+  }
+  
+  .slide-indicators {
+    margin-top: 1.5rem;
+    gap: 0.6rem;
+  }
+  
+  .indicator {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .section-header {
+    margin: 2.5rem 0 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .section-header h2 {
+    font-size: clamp(1.6rem, 10vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+  
+  .section-header p {
+    font-size: clamp(0.8rem, 4.5vw, 1rem);
+  }
+  
+  footer {
+    padding: 3rem 1rem;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .footer-content {
+    gap: 1.5rem;
+    padding: 0;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section .social-icons {
+    gap: 1rem;
+  }
+  
+  .footer-section .social-icons a {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 20px;
+  }
+  
+  .footer-bottom {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+}
+
+/* iOS Specific Optimizations */
+@supports (-webkit-touch-callout: none) {
+  .navbar {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .slideshow {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .footer-content {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Android Specific Optimizations */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .navbar a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .indicator {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .footer-section .social-icons a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .navbar a:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .indicator:hover {
+    transform: none;
+  }
+  
+  .footer-section .social-icons a:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .product-card:hover {
+    transform: none;
+    box-shadow: 0 8px 30px rgba(209, 155, 162, 0.1);
+  }
+}
+
+/* High DPI Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .left-decoration,
+  .right-decoration {
+    background-size: 60px 300px;
+  }
+}
+
+/* Landscape Mobile Optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  header {
+    padding: 1.5rem 1rem;
+  }
+  
+  header h1 {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+  
+  .slideshow {
+    margin: 2rem auto;
+    padding: 1.5rem;
+  }
+  
+  .slide-container {
+    height: 250px;
   }
   
   .slide-content {
