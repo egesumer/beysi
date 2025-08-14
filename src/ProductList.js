@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductList.css';
 import Modal from './Modal';
 
@@ -237,12 +237,6 @@ function ProductList() {
   const itemsPerPage = 9;
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isChangingPage, setIsChangingPage] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-  
-  // Ref for pagination container to prevent scroll issues
-  const paginationRef = useRef(null);
-  const productListRef = useRef(null);
 
   // Filtreleme fonksiyonu
   const filteredProducts = products.filter(product => {
@@ -311,43 +305,9 @@ function ProductList() {
     setCurrentPage(1);
   }, [selectedCategory, selectedMaterial, selectedStyle, priceRange, sortBy]);
 
-  // Aggressive scroll prevention during page changes
-  useEffect(() => {
-    if (isChangingPage) {
-      // Add CSS class to prevent scroll
-      document.body.classList.add('pagination-active');
-      
-      // Force scroll position to exact position after content changes
-      const forceScroll = () => {
-        window.scrollTo(0, scrollPosition);
-      };
-
-      // Multiple attempts to maintain scroll position
-      forceScroll();
-      setTimeout(forceScroll, 10);
-      setTimeout(forceScroll, 50);
-      setTimeout(forceScroll, 100);
-      setTimeout(forceScroll, 150);
-
-      // Cleanup after 300ms
-      setTimeout(() => {
-        document.body.classList.remove('pagination-active');
-        setIsChangingPage(false);
-      }, 300);
-
-      return () => {
-        document.body.classList.remove('pagination-active');
-      };
-    }
-  }, [isChangingPage, scrollPosition]);
-
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Capture current scroll position before changing page
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      setScrollPosition(currentScrollTop);
-      setIsChangingPage(true);
+      // Simply change the page without any scroll manipulation
       setCurrentPage(pageNumber);
     }
   };
@@ -452,7 +412,7 @@ function ProductList() {
       </div>
 
       {/* Ürün Listesi */}
-      <div ref={productListRef} className={`product-list`}>
+      <div className={`product-list`}>
         {currentProducts.map((product) => (
           <div key={product.id} className="product-card" onClick={() => openModal(product)}>
             <img src={product.image} alt={product.name} />
@@ -481,7 +441,7 @@ function ProductList() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div ref={paginationRef} className="pagination">
+        <div className="pagination">
           <button 
             onClick={(e) => {
               e.preventDefault();
