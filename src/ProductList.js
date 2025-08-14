@@ -235,7 +235,6 @@ function ProductList() {
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
-  const [isExiting, setIsExiting] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   
@@ -315,43 +314,16 @@ function ProductList() {
       // Store current scroll position
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       
-      // Add body class to prevent scroll
-      document.body.classList.add('pagination-active');
+      // Change page immediately
+      setCurrentPage(pageNumber);
       
-      // Completely prevent scroll during page change
-      const preventScroll = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        window.scrollTo(0, currentScrollPosition);
-        return false;
-      };
-      
-      // Add scroll prevention to multiple events
-      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
-      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
-      document.addEventListener('wheel', preventScroll, { passive: false, capture: true });
-      
-      setIsExiting(true);
-      
-      // Change page immediately without delays
-      setTimeout(() => {
-        setCurrentPage(pageNumber);
-        setIsExiting(false);
-        
-        // Remove scroll prevention
-        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('wheel', preventScroll, { passive: false, capture: true });
-        
-        // Remove body class
-        document.body.classList.remove('pagination-active');
-        
-        // Restore scroll position
+      // Restore scroll position in next tick
+      requestAnimationFrame(() => {
         window.scrollTo({
           top: currentScrollPosition,
           behavior: 'instant'
         });
-      }, 100); // Much shorter timeout
+      });
     }
   };
 
@@ -455,7 +427,7 @@ function ProductList() {
       </div>
 
       {/* Ürün Listesi */}
-      <div ref={productListRef} className={`product-list ${isExiting ? 'exit' : ''}`}>
+      <div ref={productListRef} className={`product-list`}>
         {currentProducts.map((product) => (
           <div key={product.id} className="product-card" onClick={() => openModal(product)}>
             <img src={product.image} alt={product.name} />
