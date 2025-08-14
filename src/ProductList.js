@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ProductList.css';
 import Modal from './Modal';
 
@@ -238,6 +238,10 @@ function ProductList() {
   const [isExiting, setIsExiting] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  
+  // Ref for pagination container to prevent scroll issues
+  const paginationRef = useRef(null);
+  const productListRef = useRef(null);
 
   // Filtreleme fonksiyonu
   const filteredProducts = products.filter(product => {
@@ -306,22 +310,60 @@ function ProductList() {
     setCurrentPage(1);
   }, [selectedCategory, selectedMaterial, selectedStyle, priceRange, sortBy]);
 
-  const goToPage = (pageNumber) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Prevent any unwanted scroll behavior
-      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      
-      setIsExiting(true);
-      setTimeout(() => {
-        setCurrentPage(pageNumber);
-        setIsExiting(false);
-        
-        // Maintain scroll position to prevent jumping to end of page
+  // Prevent scroll issues on mobile during pagination
+  useEffect(() => {
+    let isScrolling = false;
+    
+    const handleScroll = () => {
+      if (isScrolling) {
+        // Prevent scroll during pagination
         window.scrollTo({
-          top: currentScrollPosition,
+          top: window.pageYOffset || document.documentElement.scrollTop,
           behavior: 'instant'
         });
-      }, 300);
+      }
+    };
+
+    if (isExiting) {
+      isScrolling = true;
+      window.addEventListener('scroll', handleScroll, { passive: false });
+    }
+
+    return () => {
+      if (isScrolling) {
+        window.removeEventListener('scroll', handleScroll);
+        isScrolling = false;
+      }
+    };
+  }, [isExiting]);
+
+  const goToPage = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
+      // Store current scroll position
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // Prevent any default scroll behavior
+      if (paginationRef.current) {
+        paginationRef.current.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+      }
+      
+      setIsExiting(true);
+      
+      // Use requestAnimationFrame for better timing on mobile
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          setCurrentPage(pageNumber);
+          setIsExiting(false);
+          
+          // Restore scroll position after state update
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top: currentScrollPosition,
+              behavior: 'instant'
+            });
+          });
+        }, 200); // Reduced timeout for better mobile performance
+      });
     }
   };
 
@@ -425,7 +467,7 @@ function ProductList() {
       </div>
 
       {/* Ürün Listesi */}
-      <div className={`product-list ${isExiting ? 'exit' : ''}`}>
+      <div ref={productListRef} className={`product-list ${isExiting ? 'exit' : ''}`}>
         {currentProducts.map((product) => (
           <div key={product.id} className="product-card" onClick={() => openModal(product)}>
             <img src={product.image} alt={product.name} />
@@ -454,7 +496,7 @@ function ProductList() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="pagination">
+        <div ref={paginationRef} className="pagination">
           <button 
             onClick={(e) => {
               e.preventDefault();

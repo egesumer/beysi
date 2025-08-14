@@ -481,6 +481,10 @@
   border: 1px solid rgba(209, 155, 162, 0.1);
   position: relative;
   z-index: 10;
+  /* Prevent scroll issues on mobile */
+  scroll-margin-top: 0;
+  scroll-margin-bottom: 0;
+  scroll-behavior: auto;
 }
 
 .pagination button {
@@ -490,6 +494,8 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  /* Prevent any scroll behavior */
+  scroll-behavior: auto;
 }
 
 .pagination-arrow {
