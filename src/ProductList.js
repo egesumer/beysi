@@ -311,8 +311,25 @@ function ProductList() {
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Simply change the page without any scroll manipulation
+      // Prevent any scroll behavior
+      const preventScroll = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      };
+      
+      // Add scroll prevention temporarily
+      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
+      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
+      
+      // Change page
       setCurrentPage(pageNumber);
+      
+      // Remove scroll prevention after a short delay
+      setTimeout(() => {
+        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
+      }, 100);
     }
   };
 
@@ -450,7 +467,14 @@ function ProductList() {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              e.stopImmediatePropagation();
+              // Prevent scroll before changing page
+              const currentScroll = window.pageYOffset;
               goToPreviousPage();
+              // Force scroll position to stay the same
+              setTimeout(() => {
+                window.scrollTo(0, currentScroll);
+              }, 0);
             }}
             className="pagination-arrow" 
             disabled={currentPage === 1}
@@ -469,8 +493,15 @@ function ProductList() {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  e.stopImmediatePropagation();
                   if (typeof page === 'number') {
+                    // Prevent scroll before changing page
+                    const currentScroll = window.pageYOffset;
                     goToPage(page);
+                    // Force scroll position to stay the same
+                    setTimeout(() => {
+                      window.scrollTo(0, currentScroll);
+                    }, 0);
                   }
                 }}
                 className={`page-number ${page === currentPage ? 'active' : ''} ${typeof page !== 'number' ? 'dots' : ''}`}
@@ -486,7 +517,14 @@ function ProductList() {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              e.stopImmediatePropagation();
+              // Prevent scroll before changing page
+              const currentScroll = window.pageYOffset;
               goToNextPage();
+              // Force scroll position to stay the same
+              setTimeout(() => {
+                window.scrollTo(0, currentScroll);
+              }, 0);
             }}
             className="pagination-arrow" 
             disabled={currentPage === totalPages}
