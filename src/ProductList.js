@@ -238,6 +238,7 @@ function ProductList() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isChangingPage, setIsChangingPage] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   
   // Ref for pagination container to prevent scroll issues
   const paginationRef = useRef(null);
@@ -313,14 +314,15 @@ function ProductList() {
   // Aggressive scroll prevention during page changes
   useEffect(() => {
     if (isChangingPage) {
-      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      
       // Add CSS class to prevent scroll
       document.body.classList.add('pagination-active');
       
-      // Force scroll position multiple times
+      // Force scroll position based on stored percentage after content changes
       const forceScroll = () => {
-        window.scrollTo(0, currentScrollPosition);
+        const newDocumentHeight = document.documentElement.scrollHeight;
+        const newViewportHeight = window.innerHeight;
+        const newScrollTop = scrollPosition * (newDocumentHeight - newViewportHeight);
+        window.scrollTo(0, Math.max(0, newScrollTop));
       };
 
       // Multiple attempts to maintain scroll position
@@ -340,10 +342,17 @@ function ProductList() {
         document.body.classList.remove('pagination-active');
       };
     }
-  }, [isChangingPage]);
+  }, [isChangingPage, scrollPosition]);
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
+      // Capture current scroll position before changing page
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const documentHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      const scrollPercentage = documentHeight > viewportHeight ? currentScrollTop / (documentHeight - viewportHeight) : 0;
+      
+      setScrollPosition(scrollPercentage);
       setIsChangingPage(true);
       setCurrentPage(pageNumber);
     }
