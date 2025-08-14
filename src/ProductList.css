@@ -503,6 +503,11 @@
   scroll-behavior: auto;
   /* Prevent touch scroll */
   touch-action: pan-x pan-y;
+  /* Prevent any default button behavior */
+  outline: none;
+  border: none;
+  /* Prevent focus scroll */
+  scroll-margin: 0;
 }
 
 /* Prevent body scroll during pagination */
@@ -586,6 +591,16 @@ body.pagination-active {
   justify-content: center;
   font-size: 0.9rem;
   font-weight: 600;
+  /* Prevent scroll issues */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  scroll-behavior: auto;
+  scroll-margin: 0;
+  outline: none;
 }
 
 .page-number:hover {

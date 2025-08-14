@@ -311,19 +311,8 @@ function ProductList() {
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Store current scroll position
-      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Change page immediately
+      // Simply change the page without any scroll manipulation
       setCurrentPage(pageNumber);
-      
-      // Restore scroll position in next tick
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: currentScrollPosition,
-          behavior: 'instant'
-        });
-      });
     }
   };
 
