@@ -307,8 +307,16 @@ function ProductList() {
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Simply change the page without any scroll manipulation
+      // Add CSS class to prevent scroll
+      document.body.classList.add('pagination-active');
+      
+      // Change the page
       setCurrentPage(pageNumber);
+      
+      // Remove the class after a short delay
+      setTimeout(() => {
+        document.body.classList.remove('pagination-active');
+      }, 100);
     }
   };
 
