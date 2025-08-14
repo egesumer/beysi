@@ -237,6 +237,7 @@ function ProductList() {
   const itemsPerPage = 9;
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isChangingPage, setIsChangingPage] = useState(false);
   
   // Ref for pagination container to prevent scroll issues
   const paginationRef = useRef(null);
@@ -309,57 +310,57 @@ function ProductList() {
     setCurrentPage(1);
   }, [selectedCategory, selectedMaterial, selectedStyle, priceRange, sortBy]);
 
-  // Prevent automatic scroll when page content changes
+  // Aggressive scroll prevention during page changes
   useEffect(() => {
-    const preventContentScroll = () => {
+    if (isChangingPage) {
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       
-      // Force scroll position to stay the same after content change
-      requestAnimationFrame(() => {
+      const preventScroll = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         window.scrollTo(0, currentScrollPosition);
-      });
-    };
+        return false;
+      };
 
-    // Add a small delay to ensure content has rendered
-    const timeoutId = setTimeout(preventContentScroll, 10);
-    
-    return () => clearTimeout(timeoutId);
-  }, [currentPage]);
+      // Add multiple event listeners
+      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
+      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
+      document.addEventListener('wheel', preventScroll, { passive: false, capture: true });
+      document.addEventListener('mousewheel', preventScroll, { passive: false, capture: true });
+
+      // Force scroll position multiple times
+      const forceScroll = () => {
+        window.scrollTo(0, currentScrollPosition);
+      };
+
+      // Multiple attempts to maintain scroll position
+      forceScroll();
+      setTimeout(forceScroll, 10);
+      setTimeout(forceScroll, 50);
+      setTimeout(forceScroll, 100);
+
+      // Cleanup after 200ms
+      setTimeout(() => {
+        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('wheel', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('mousewheel', preventScroll, { passive: false, capture: true });
+        setIsChangingPage(false);
+      }, 200);
+
+      return () => {
+        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('wheel', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('mousewheel', preventScroll, { passive: false, capture: true });
+      };
+    }
+  }, [isChangingPage]);
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Capture current scroll position
-      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // Prevent any automatic scroll behavior
-      const preventAutoScroll = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-      };
-      
-      // Add multiple event listeners to prevent scroll
-      document.addEventListener('scroll', preventAutoScroll, { passive: false, capture: true });
-      document.addEventListener('touchmove', preventAutoScroll, { passive: false, capture: true });
-      document.addEventListener('wheel', preventAutoScroll, { passive: false, capture: true });
-      
-      // Change page
+      setIsChangingPage(true);
       setCurrentPage(pageNumber);
-      
-      // Force scroll position to stay exactly the same
-      requestAnimationFrame(() => {
-        window.scrollTo(0, currentScrollPosition);
-        
-        // Double-check scroll position after a short delay
-        setTimeout(() => {
-          window.scrollTo(0, currentScrollPosition);
-          
-          // Remove scroll prevention
-          document.removeEventListener('scroll', preventAutoScroll, { passive: false, capture: true });
-          document.removeEventListener('touchmove', preventAutoScroll, { passive: false, capture: true });
-          document.removeEventListener('wheel', preventAutoScroll, { passive: false, capture: true });
-        }, 50);
-      });
     }
   };
 
