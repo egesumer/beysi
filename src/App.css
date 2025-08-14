@@ -1,0 +1,588 @@
+/* Genel Stil Ayarları */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #fce9e5 0%, #f8e5e2 100%);
+  color: #4a4036;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+/* Feminen Dekoratif Motifler */
+.left-decoration,
+.right-decoration {
+  position: fixed;
+  top: 200px;
+  bottom: 0;
+  width: 120px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.left-decoration {
+  left: 15px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 1400"><defs><linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23d19ba2;stop-opacity:0.6"/><stop offset="50%" style="stop-color:%23c08a91;stop-opacity:0.7"/><stop offset="100%" style="stop-color:%23d19ba2;stop-opacity:0.6"/></linearGradient><linearGradient id="letterGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23d19ba2;stop-opacity:0.8"/><stop offset="50%" style="stop-color:%23c08a91;stop-opacity:0.9"/><stop offset="100%" style="stop-color:%23d19ba2;stop-opacity:0.8"/></linearGradient></defs><path d="M60,0 Q80,140 60,280 Q40,420 60,560 Q80,700 60,840 Q40,980 60,1120 Q80,1260 60,1400" stroke="url(%23ribbonGradient)" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="210" r="7" fill="%23d19ba2" opacity="0.7"/><circle cx="60" cy="490" r="6" fill="%23c08a91" opacity="0.6"/><circle cx="60" cy="770" r="7" fill="%23d19ba2" opacity="0.7"/><circle cx="60" cy="1050" r="6" fill="%23c08a91" opacity="0.6"/><circle cx="60" cy="1330" r="7" fill="%23d19ba2" opacity="0.7"/><text x="60" y="350" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">B</text><text x="60" y="375" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">E</text><text x="60" y="400" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">Y</text><text x="60" y="425" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">S</text><text x="60" y="450" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">I</text></svg>') repeat-y;
+  background-size: 120px 600px;
+  animation: ribbonFlow 12s ease-in-out infinite;
+}
+
+.right-decoration {
+  right: 15px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 1400"><defs><linearGradient id="ribbonGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23d19ba2;stop-opacity:0.6"/><stop offset="50%" style="stop-color:%23c08a91;stop-opacity:0.7"/><stop offset="100%" style="stop-color:%23d19ba2;stop-opacity:0.6"/></linearGradient><linearGradient id="letterGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23d19ba2;stop-opacity:0.8"/><stop offset="50%" style="stop-color:%23c08a91;stop-opacity:0.9"/><stop offset="100%" style="stop-color:%23d19ba2;stop-opacity:0.8"/></linearGradient></defs><path d="M60,0 Q80,140 60,280 Q40,420 60,560 Q80,700 60,840 Q40,980 60,1120 Q80,1260 60,1400" stroke="url(%23ribbonGradient)" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="60" cy="210" r="7" fill="%23d19ba2" opacity="0.7"/><circle cx="60" cy="490" r="6" fill="%23c08a91" opacity="0.6"/><circle cx="60" cy="770" r="7" fill="%23d19ba2" opacity="0.7"/><circle cx="60" cy="1050" r="6" fill="%23c08a91" opacity="0.6"/><circle cx="60" cy="1330" r="7" fill="%23d19ba2" opacity="0.7"/><text x="60" y="350" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">B</text><text x="60" y="375" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">E</text><text x="60" y="400" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">Y</text><text x="60" y="425" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">S</text><text x="60" y="450" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="url(%23letterGradient)" opacity="0.8">I</text></svg>') repeat-y;
+  background-size: 120px 600px;
+  animation: ribbonFlow 12s ease-in-out infinite reverse;
+}
+
+@keyframes ribbonFlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Header - Premium Elegant Design */
+header {
+  background: linear-gradient(135deg, #d19ba2 0%, #f8e5e2 100%);
+  color: #4a4036;
+  padding: 3rem 2rem;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(209, 155, 162, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0 0 30px 30px;
+  z-index: 1;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.08"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  pointer-events: none;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  color: #4a4036;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease-out;
+}
+
+header p {
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: #7a7068;
+  margin: 0;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 1s ease-out 0.3s both;
+  font-style: italic;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navbar - Elegant Navigation */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(248, 229, 226, 0.85);
+  padding: 1rem 2rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 15px rgba(209, 155, 162, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 0 25px 25px;
+  margin: 0 30px;
+  width: calc(100% - 60px);
+}
+
+.navbar.scrolled {
+  background: rgba(248, 229, 226, 0.95);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 2px 20px rgba(209, 155, 162, 0.12);
+}
+
+.navbar a {
+  color: #4a4036;
+  text-decoration: none;
+  margin: 0 1.5rem;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.navbar a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar a:hover::before {
+  left: 100%;
+}
+
+.navbar a:hover {
+  color: #d19ba2;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.3) 100%);
+  box-shadow: 0 8px 25px rgba(209, 155, 162, 0.25);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.navbar a.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.35) 100%);
+  color: #d19ba2;
+  font-weight: 500;
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(209, 155, 162, 0.2);
+  transform: translateY(-1px);
+}
+
+
+
+/* Slideshow - Premium Presentation */
+.slideshow {
+  position: relative;
+  width: 95%;
+  max-width: 1400px;
+  overflow: hidden;
+  text-align: center;
+  margin: 4rem auto;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #d19ba2 0%, #f8e5e2 100%);
+  padding: 3rem;
+  box-shadow: 0 15px 50px rgba(209, 155, 162, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+.slideshow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  pointer-events: none;
+  border-radius: 25px;
+}
+
+.slide-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(209, 155, 162, 0.1) 30%,
+    rgba(209, 155, 162, 0.3) 60%,
+    rgba(209, 155, 162, 0.6) 85%,
+    rgba(209, 155, 162, 0.8) 100%
+  );
+  color: white;
+  padding: 3rem 2rem;
+  text-align: left;
+  backdrop-filter: blur(8px);
+  border-radius: 0 0 30px 30px;
+}
+
+.slide-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 8px rgba(209, 155, 162, 0.4);
+  letter-spacing: 1px;
+}
+
+.slide-subtitle {
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 400;
+  opacity: 0.95;
+  text-shadow: 1px 1px 4px rgba(209, 155, 162, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.slide-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.indicator {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.indicator.active {
+  background: #d19ba2;
+  border-color: #d19ba2;
+  transform: scale(1.3);
+  box-shadow: 0 0 15px rgba(209, 155, 162, 0.5);
+}
+
+.indicator:hover {
+  background: rgba(209, 155, 162, 0.6);
+  border-color: #d19ba2;
+  transform: scale(1.2);
+}
+
+/* Section Header - Elegant Typography */
+.section-header {
+  text-align: center;
+  margin: 4rem 0 3rem;
+  padding: 0 2rem;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #4a4036;
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+.section-header p {
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: #7a7068;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+/* Fade-in and Fade-out Animations */
+.fade-in {
+  animation: fadeIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from { 
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to { 
+    opacity: 0;
+    transform: scale(1.05) translateY(-20px);
+  }
+}
+
+/* Footer - Premium Footer Design */
+footer {
+  background: linear-gradient(135deg, #fce9e5 0%, #d19ba2 100%);
+  color: #4a4036;
+  padding: 4rem 2rem;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;
+  border-radius: 25px 25px 0 0;
+  box-shadow: 0 -8px 30px rgba(209, 155, 162, 0.15);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 1;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  text-align: left;
+}
+
+.footer-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4a4036;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.footer-section h4 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4a4036;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-section p {
+  margin: 0.8rem 0;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.footer-section .social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.footer-section .social-icons a {
+  color: #4a4036;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.footer-section .social-icons a:hover {
+  color: #d19ba2;
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(209, 155, 162, 0.25);
+  letter-spacing: 1px;
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(209, 155, 162, 0.2);
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Professional Contact Icons */
+.contact-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+
+.email-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d19ba2'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+}
+
+.phone-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d19ba2'%3E%3Cpath d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E");
+}
+
+.location-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d19ba2'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E");
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .left-decoration,
+  .right-decoration {
+    display: none;
+  }
+
+  .navbar {
+    padding: 0.8rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .navbar a {
+    margin: 0.3rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .slideshow {
+    width: 95%;
+    margin: 3rem auto;
+    padding: 2rem;
+  }
+  
+  .slide-container {
+    height: 350px;
+  }
+  
+  .slide-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .footer-content {
+    font-size: 0.95rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .footer-section .social-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+
+  header {
+    padding: 2rem 1rem;
+  }
+  
+  .navbar a {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .slideshow {
+    padding: 1.5rem;
+  }
+  
+  .slide-container {
+    height: 300px;
+  }
+  
+  .slide-content {
+    padding: 1.5rem 1rem;
+  }
+}
