@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce9e5;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f8e5e2;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d19ba2;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c08a91;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="200" cy="150" r="80" fill="url(#accent)" opacity="0.1"/>
+  <circle cx="1000" cy="480" r="120" fill="url(#accent)" opacity="0.08"/>
+  <circle cx="150" cy="500" r="60" fill="url(#accent)" opacity="0.12"/>
+  
+  <!-- Main content area -->
+  <rect x="300" y="200" width="600" height="230" rx="30" fill="white" opacity="0.95" stroke="url(#accent)" stroke-width="3"/>
+  
+  <!-- Logo/Brand -->
+  <circle cx="400" cy="315" r="50" fill="url(#accent)"/>
+  <text x="400" y="330" font-family="serif" font-size="40" font-weight="bold" text-anchor="middle" fill="white">B</text>
+  
+  <!-- Title -->
+  <text x="500" y="280" font-family="serif" font-size="48" font-weight="700" fill="#4a4036">Beysi</text>
+  
+  <!-- Subtitle -->
+  <text x="500" y="320" font-family="sans-serif" font-size="24" font-weight="400" fill="#7a7068">Premium Accessories</text>
+  
+  <!-- Description -->
+  <text x="500" y="360" font-family="sans-serif" font-size="18" font-weight="400" fill="#7a7068" text-anchor="middle">Fashion accessories and jewelry collection</text>
+  
+  <!-- Decorative line -->
+  <line x1="400" y1="390" x2="800" y2="390" stroke="url(#accent)" stroke-width="2" opacity="0.6"/>
+</svg>
