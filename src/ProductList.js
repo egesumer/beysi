@@ -315,19 +315,9 @@ function ProductList() {
     if (isChangingPage) {
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       
-      const preventScroll = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        window.scrollTo(0, currentScrollPosition);
-        return false;
-      };
-
-      // Add multiple event listeners
-      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
-      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
-      document.addEventListener('wheel', preventScroll, { passive: false, capture: true });
-      document.addEventListener('mousewheel', preventScroll, { passive: false, capture: true });
-
+      // Add CSS class to prevent scroll
+      document.body.classList.add('pagination-active');
+      
       // Force scroll position multiple times
       const forceScroll = () => {
         window.scrollTo(0, currentScrollPosition);
@@ -338,21 +328,16 @@ function ProductList() {
       setTimeout(forceScroll, 10);
       setTimeout(forceScroll, 50);
       setTimeout(forceScroll, 100);
+      setTimeout(forceScroll, 150);
 
-      // Cleanup after 200ms
+      // Cleanup after 300ms
       setTimeout(() => {
-        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('wheel', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('mousewheel', preventScroll, { passive: false, capture: true });
+        document.body.classList.remove('pagination-active');
         setIsChangingPage(false);
-      }, 200);
+      }, 300);
 
       return () => {
-        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('wheel', preventScroll, { passive: false, capture: true });
-        document.removeEventListener('mousewheel', preventScroll, { passive: false, capture: true });
+        document.body.classList.remove('pagination-active');
       };
     }
   }, [isChangingPage]);
