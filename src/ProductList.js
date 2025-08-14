@@ -313,10 +313,19 @@ function ProductList() {
       // Change the page
       setCurrentPage(pageNumber);
       
-      // Restore scroll position after content changes
-      setTimeout(() => {
+      // Multiple attempts to restore scroll position
+      const restoreScroll = () => {
         window.scrollTo(0, currentScrollPosition);
-      }, 10);
+      };
+      
+      // Immediate restoration
+      restoreScroll();
+      
+      // Multiple delayed attempts to ensure restoration
+      requestAnimationFrame(restoreScroll);
+      setTimeout(restoreScroll, 10);
+      setTimeout(restoreScroll, 50);
+      setTimeout(restoreScroll, 100);
     }
   };
 
