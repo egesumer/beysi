@@ -310,60 +310,48 @@ function ProductList() {
     setCurrentPage(1);
   }, [selectedCategory, selectedMaterial, selectedStyle, priceRange, sortBy]);
 
-  // Prevent scroll issues on mobile during pagination
-  useEffect(() => {
-    let isScrolling = false;
-    
-    const handleScroll = () => {
-      if (isScrolling) {
-        // Prevent scroll during pagination
-        window.scrollTo({
-          top: window.pageYOffset || document.documentElement.scrollTop,
-          behavior: 'instant'
-        });
-      }
-    };
-
-    if (isExiting) {
-      isScrolling = true;
-      window.addEventListener('scroll', handleScroll, { passive: false });
-    }
-
-    return () => {
-      if (isScrolling) {
-        window.removeEventListener('scroll', handleScroll);
-        isScrolling = false;
-      }
-    };
-  }, [isExiting]);
-
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
       // Store current scroll position
       const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       
-      // Prevent any default scroll behavior
-      if (paginationRef.current) {
-        paginationRef.current.scrollIntoView({ behavior: 'instant', block: 'nearest' });
-      }
+      // Add body class to prevent scroll
+      document.body.classList.add('pagination-active');
+      
+      // Completely prevent scroll during page change
+      const preventScroll = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.scrollTo(0, currentScrollPosition);
+        return false;
+      };
+      
+      // Add scroll prevention to multiple events
+      document.addEventListener('scroll', preventScroll, { passive: false, capture: true });
+      document.addEventListener('touchmove', preventScroll, { passive: false, capture: true });
+      document.addEventListener('wheel', preventScroll, { passive: false, capture: true });
       
       setIsExiting(true);
       
-      // Use requestAnimationFrame for better timing on mobile
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          setCurrentPage(pageNumber);
-          setIsExiting(false);
-          
-          // Restore scroll position after state update
-          requestAnimationFrame(() => {
-            window.scrollTo({
-              top: currentScrollPosition,
-              behavior: 'instant'
-            });
-          });
-        }, 200); // Reduced timeout for better mobile performance
-      });
+      // Change page immediately without delays
+      setTimeout(() => {
+        setCurrentPage(pageNumber);
+        setIsExiting(false);
+        
+        // Remove scroll prevention
+        document.removeEventListener('scroll', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('touchmove', preventScroll, { passive: false, capture: true });
+        document.removeEventListener('wheel', preventScroll, { passive: false, capture: true });
+        
+        // Remove body class
+        document.body.classList.remove('pagination-active');
+        
+        // Restore scroll position
+        window.scrollTo({
+          top: currentScrollPosition,
+          behavior: 'instant'
+        });
+      }, 100); // Much shorter timeout
     }
   };
 

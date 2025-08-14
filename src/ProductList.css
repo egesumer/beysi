@@ -485,6 +485,9 @@
   scroll-margin-top: 0;
   scroll-margin-bottom: 0;
   scroll-behavior: auto;
+  /* Prevent any scroll interference */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
 }
 
 .pagination button {
@@ -496,6 +499,15 @@
   -ms-user-select: none;
   /* Prevent any scroll behavior */
   scroll-behavior: auto;
+  /* Prevent touch scroll */
+  touch-action: pan-x pan-y;
+}
+
+/* Prevent body scroll during pagination */
+body.pagination-active {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
 }
 
 .pagination-arrow {
