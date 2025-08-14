@@ -307,16 +307,16 @@ function ProductList() {
 
   const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages && pageNumber !== currentPage) {
-      // Add CSS class to prevent scroll
-      document.body.classList.add('pagination-active');
+      // Capture current scroll position
+      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
       
       // Change the page
       setCurrentPage(pageNumber);
       
-      // Remove the class after a short delay
+      // Restore scroll position after content changes
       setTimeout(() => {
-        document.body.classList.remove('pagination-active');
-      }, 100);
+        window.scrollTo(0, currentScrollPosition);
+      }, 10);
     }
   };
 
