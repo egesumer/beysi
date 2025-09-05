@@ -1301,3 +1301,188 @@ footer::before {
     transform: translateZ(0);
   }
 }
+
+/* Floating Order Button */
+.floating-order-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+  color: white;
+  border: 2px solid transparent;
+  padding: 15px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.floating-order-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #ff6b9d;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+  border: 2px solid #ff6b9d;
+}
+
+.order-icon {
+  font-size: 20px;
+}
+
+.order-text {
+  white-space: nowrap;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
+  }
+  100% {
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+  }
+}
+
+/* Order Modal */
+.order-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.order-modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.order-modal-content h2 {
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.order-modal-content > p {
+  color: #666;
+  text-align: center;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.contact-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.contact-option.instagram {
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+}
+
+.contact-option.whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+}
+
+.contact-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.contact-option .contact-icon {
+  font-size: 24px;
+}
+
+.contact-option h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.contact-option p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.order-instructions {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #ff6b9d;
+}
+
+.order-instructions h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.order-instructions ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.order-instructions li {
+  margin-bottom: 8px;
+}
+
+/* Mobile Responsive for Order Button */
+@media (max-width: 768px) {
+  .floating-order-button {
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .order-text {
+    display: none;
+  }
+  
+  .order-icon {
+    font-size: 18px;
+  }
+  
+  .order-modal-content {
+    margin: 10px;
+    padding: 20px;
+  }
+}

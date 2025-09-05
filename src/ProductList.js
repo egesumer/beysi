@@ -4,225 +4,265 @@ import Modal from './Modal';
 
 function ProductList() {
   const products = [
+    // KOLYE ÜRÜNLERİ
     { 
       id: 1, 
-      name: "Zarif Gümüş Kolye", 
-      price: 1000,
-      priceDisplay: "1000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "El işçiliği ile üretilen zarif gümüş kolye, her tarza uyum sağlar.",
+      name: "925 Ayar Gümüş Tiffany Kolye", 
+      price: 1900,
+      priceDisplay: "1900.00 ₺", 
+      image: "/images/products/kolye/925 Ayar Gümüş Tiffany Kolye 1900 TL.jpg",
+      description: "925 ayar gümüş Tiffany tarzı kolye. 1 metre uzunluğunda, her tarza uyum sağlar.",
       category: "Kolye",
       material: "Gümüş",
       style: "Zarif"
     },
     { 
       id: 2, 
-      name: "Minimalist Gümüş Bilezik", 
-      price: 1500,
-      priceDisplay: "1500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Sade ve şık tasarım, günlük kullanım için ideal.",
-      category: "Bilezik",
+      name: "925 Ayar Gümüş Kolye", 
+      price: 1800,
+      priceDisplay: "1800.00 ₺", 
+      image: "/images/products/kolye/925 Ayar Gümüş Kolye 1800 TL.jpg",
+      description: "925 ayar gümüş kolye, renkli taş detaylı zarif tasarım.",
+      category: "Kolye",
       material: "Gümüş",
-      style: "Minimalist"
+      style: "Zarif"
     },
     { 
       id: 3, 
-      name: "Çiçek Motifli Küpe", 
-      price: 2000,
-      priceDisplay: "2000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Doğal çiçek motifleri ile bezeli, feminen tasarım.",
-      category: "Küpe",
+      name: "925 Ayar Gümüş Kolye Rose Rengi", 
+      price: 550,
+      priceDisplay: "550.00 ₺", 
+      image: "/images/products/kolye/925 Ayar Gümüş Kolye Rose Rengi 550 TL.jpg",
+      description: "925 ayar gümüş kolye, rose gold renkli taş detaylı tasarım.",
+      category: "Kolye",
       material: "Gümüş",
-      style: "Feminen"
+      style: "Romantik"
     },
     { 
       id: 4, 
-      name: "Vintage Gümüş Kolye", 
-      price: 2500,
-      priceDisplay: "2500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Klasik vintage tasarım, özel günler için mükemmel.",
+      name: "925 Ayar Gümüş Siyah Yonca Kolye", 
+      price: 800,
+      priceDisplay: "800.00 ₺", 
+      image: "/images/products/kolye/925 Ayar Gümüş Siyah Yonca Kolye 800 TL.jpg",
+      description: "925 ayar gümüş kolye, siyah yonca motifli şık tasarım.",
       category: "Kolye",
       material: "Gümüş",
-      style: "Vintage"
+      style: "Zarif"
     },
     { 
       id: 5, 
-      name: "Zincir Bilezik Seti", 
-      price: 3000,
-      priceDisplay: "3000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1603561411-07134e71a2b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Üçlü bilezik seti, katmanlı takı trendine uygun.",
-      category: "Bilezik",
-      material: "Çelik",
-      style: "Modern"
+      name: "925 Ayar Gümüş Yeşim Taşı İncili Kolye", 
+      price: 1200,
+      priceDisplay: "1200.00 ₺", 
+      image: "/images/products/kolye/925 Ayar Gümüş Yeşim Taşı İncili Kolye 1200 TL.jpg",
+      description: "925 ayar gümüş kolye, yeşim taşı ve inci detaylı doğal tasarım.",
+      category: "Kolye",
+      material: "Gümüş",
+      style: "Feminen"
     },
+
+    // KÜPE ÜRÜNLERİ
     { 
       id: 6, 
-      name: "İnci Detaylı Küpe", 
-      price: 3500,
-      priceDisplay: "3500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Gümüş ve inci kombinasyonu, zarif ve sofistike.",
+      name: "925 Ayar Gümüş İncili Küpe", 
+      price: 1000,
+      priceDisplay: "1000.00 ₺", 
+      image: "/images/products/kupe/925 Ayar Gümüş İncili Küpe 1000 TL.jpg",
+      description: "925 ayar gümüş küpe, inci detaylı zarif tasarım.",
       category: "Küpe",
       material: "Gümüş",
       style: "Zarif"
     },
     { 
       id: 7, 
-      name: "Geometrik Kolye", 
-      price: 4000,
-      priceDisplay: "4000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Modern geometrik tasarım, çağdaş tarzlar için.",
-      category: "Kolye",
-      material: "Altın",
-      style: "Modern"
+      name: "925 Ayar Gümüş Pırlanta Küpe", 
+      price: 1800,
+      priceDisplay: "1800.00 ₺", 
+      image: "/images/products/kupe/925 Ayar Gümüş Pırlanta Küpe 1800 TL.jpg",
+      description: "925 ayar gümüş küpe, pırlanta detaylı gösterişli tasarım.",
+      category: "Küpe",
+      material: "Gümüş",
+      style: "Zarif"
     },
     { 
       id: 8, 
-      name: "Halka Küpe Seti", 
-      price: 4500,
-      priceDisplay: "4500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Farklı boyutlarda halka küpeler, günlük kullanım için ideal.",
+      name: "925 Ayar Gümüş Pırlanta Küpe", 
+      price: 2000,
+      priceDisplay: "2000.00 ₺", 
+      image: "/images/products/kupe/925 Ayar Gümüş Pırlanta Küpe 2000TL.jpg",
+      description: "925 ayar gümüş küpe, pırlanta detaylı yuvarlak tasarım.",
       category: "Küpe",
-      material: "Altın",
-      style: "Modern"
+      material: "Gümüş",
+      style: "Zarif"
     },
     { 
       id: 9, 
-      name: "Yıldız Motifli Kolye", 
-      price: 5000,
-      priceDisplay: "5000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Romantik yıldız motifi, özel anlar için tasarlandı.",
-      category: "Kolye",
-      material: "Gümüş",
-      style: "Romantik"
-    },
-    { 
-      id: 10, 
-      name: "Minimalist Bilezik", 
+      name: "925 Ayar Gümüş Yeşim Taşı Küpe", 
       price: 1000,
       priceDisplay: "1000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Sade tasarım, her tarza uyum sağlar.",
-      category: "Bilezik",
-      material: "Çelik",
-      style: "Minimalist"
-    },
-    { 
-      id: 11, 
-      name: "Çiçek Kolye", 
-      price: 1500,
-      priceDisplay: "1500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "El işçiliği çiçek detayları, doğal güzellik.",
-      category: "Kolye",
+      image: "/images/products/kupe/925 Ayar Gümüş Yeşim Taşı Küpe 1000 TL.jpg",
+      description: "925 ayar gümüş küpe, yeşim taşı detaylı doğal tasarım.",
+      category: "Küpe",
       material: "Gümüş",
       style: "Feminen"
     },
     { 
-      id: 12, 
-      name: "Zincir Küpe", 
-      price: 2000,
-      priceDisplay: "2000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Zincir detaylı küpe, modern ve şık.",
+      id: 10, 
+      name: "925 Ayar Kırlangıç Küpe", 
+      price: 1800,
+      priceDisplay: "1800.00 ₺", 
+      image: "/images/products/kupe/925 Ayar Kırlangıç Küpe 1800TL.jpg",
+      description: "925 ayar gümüş küpe, kırlangıç figürlü zarif tasarım.",
       category: "Küpe",
-      material: "Çelik",
-      style: "Modern"
+      material: "Gümüş",
+      style: "Zarif"
+    },
+    { 
+      id: 11, 
+      name: "925 Ayar Küpe", 
+      price: 1200,
+      priceDisplay: "1200.00 ₺", 
+      image: "/images/products/kupe/925 Ayar Küpe 1200 TL.jpg",
+      description: "925 ayar gümüş küpe, yonca motifli sade tasarım.",
+      category: "Küpe",
+      material: "Gümüş",
+      style: "Minimalist"
+    },
+
+    // BİLEZİK ÜRÜNLERİ
+    { 
+      id: 12, 
+      name: "925 Ayar Gümüş Erkek Bileklik", 
+      price: 1500,
+      priceDisplay: "1500.00 ₺", 
+      image: "/images/products/bilezik/925 Ayar Gümüş Erkek Bileklik 1500 TL.jpg",
+      description: "925 ayar gümüş erkek bilekliği, sade ve şık tasarım.",
+      category: "Bilezik",
+      material: "Gümüş",
+      style: "Minimalist"
     },
     { 
       id: 13, 
-      name: "Vintage Bilezik", 
-      price: 2500,
-      priceDisplay: "2500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1603561411-07134e71a2b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Klasik vintage tasarım, zamansız güzellik.",
+      name: "925 Ayar Kelebekli Bileklik", 
+      price: 2200,
+      priceDisplay: "2200.00 ₺", 
+      image: "/images/products/bilezik/925 Ayar Kelebekli Bileklik 2200 TL.jpg",
+      description: "925 ayar gümüş bileklik, kelebek motifli zarif tasarım.",
       category: "Bilezik",
       material: "Gümüş",
-      style: "Vintage"
+      style: "Feminen"
     },
+
+    // TAKIM SETLERİ
     { 
       id: 14, 
-      name: "Geometrik Küpe", 
-      price: 3000,
-      priceDisplay: "3000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Modern geometrik tasarım, çağdaş tarzlar.",
-      category: "Küpe",
-      material: "Altın",
-      style: "Modern"
+      name: "925 Ayar Gümüş Pırlanta Kolye Küpe Yüzük", 
+      price: 2500,
+      priceDisplay: "2500.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Pırlanta Kolye Küpe Yüzük 2500 TL.jpg",
+      description: "925 ayar gümüş pırlanta kolye, küpe ve yüzük takım seti. Zarif ve gösterişli tasarım.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Zarif"
     },
     { 
       id: 15, 
-      name: "İnci Kolye", 
-      price: 3500,
-      priceDisplay: "3500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Gümüş ve inci kombinasyonu, zarif ve lüks.",
-      category: "Kolye",
+      name: "925 Ayar Gümüş Kolye ve Küpe", 
+      price: 1200,
+      priceDisplay: "1200.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Kolye ve Küpe 1200 TL.jpg",
+      description: "925 ayar gümüş kolye ve küpe takım seti, yıldız motifli tasarım.",
+      category: "Takım",
       material: "Gümüş",
       style: "Zarif"
     },
     { 
       id: 16, 
-      name: "Halka Bilezik", 
-      price: 4000,
-      priceDisplay: "4000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Minimalist halka tasarım, günlük kullanım için.",
-      category: "Bilezik",
-      material: "Altın",
-      style: "Minimalist"
+      name: "925 Ayar Gümüş Kolye ve Küpe", 
+      price: 1800,
+      priceDisplay: "1800.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Kolye ve Küpe 1800 TL.jpg",
+      description: "925 ayar gümüş kolye ve küpe takım seti, kare formunda taşlı tasarım.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Modern"
     },
     { 
       id: 17, 
-      name: "Yıldız Küpe", 
-      price: 4500,
-      priceDisplay: "4500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Romantik yıldız motifi, özel günler için.",
-      category: "Küpe",
+      name: "925 Ayar Gümüş Küpe ve Kolye", 
+      price: 2500,
+      priceDisplay: "2500.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Küpe ve Kolye 2500 TL.jpg",
+      description: "925 ayar gümüş küpe ve kolye takım seti, damla formunda pırıltılı tasarım.",
+      category: "Takım",
       material: "Gümüş",
-      style: "Romantik"
+      style: "Zarif"
     },
     { 
       id: 18, 
-      name: "Çiçek Bilezik", 
-      price: 5000,
-      priceDisplay: "5000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1603561411-07134e71a2b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "El işçiliği çiçek detayları, feminen tasarım.",
-      category: "Bilezik",
+      name: "925 Ayar Gümüş Margazit Takım Modeli", 
+      price: 2600,
+      priceDisplay: "2600.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Margazit Takım Modeli 2600 TL.jpg",
+      description: "925 ayar gümüş markazit takım modeli, yüzük, küpe ve kolye seti.",
+      category: "Takım",
       material: "Gümüş",
-      style: "Feminen"
+      style: "Vintage"
     },
     { 
       id: 19, 
-      name: "Zincir Kolye", 
-      price: 1000,
-      priceDisplay: "1000.00 ₺", 
-      image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Zincir detaylı kolye, modern ve şık.",
-      category: "Kolye",
-      material: "Çelik",
-      style: "Modern"
+      name: "925 Ayar Gümüş Pırlanta Takımı", 
+      price: 2300,
+      priceDisplay: "2300.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Pırlanta Takımı 2300 TL.jpg",
+      description: "925 ayar gümüş pırlanta takımı, kare formunda kolye, küpe ve yüzük seti.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Zarif"
     },
     { 
       id: 20, 
-      name: "Geometrik Bilezik", 
-      price: 1500,
-      priceDisplay: "1500.00 ₺", 
-      image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-      description: "Modern geometrik tasarım, çağdaş tarzlar için.",
-      category: "Bilezik",
-      material: "Altın",
-      style: "Modern"
+      name: "925 Ayar Gümüş Safir Pırlanta Modeli", 
+      price: 2500,
+      priceDisplay: "2500.00 ₺", 
+      image: "/images/products/takim/925 Ayar Gümüş Safir Pırlanta Modeli 2500 tl.jpg",
+      description: "925 ayar gümüş safir pırlanta modeli, kare formunda kolye, küpe ve yüzük seti.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Zarif"
+    },
+    { 
+      id: 21, 
+      name: "925 Ayar Pırlanta Set", 
+      price: 2500,
+      priceDisplay: "2500.00 ₺", 
+      image: "/images/products/takim/925 Ayar Pırlanta Set 2500 TL.jpg",
+      description: "925 ayar pırlanta set, kare formunda kolye, küpe ve yüzük takımı.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Zarif"
+    },
+    { 
+      id: 22, 
+      name: "925 Ayar İnci Kolye Ucu ve Küpe", 
+      price: 1600,
+      priceDisplay: "1600.00 ₺", 
+      image: "/images/products/kupe/925 Ayar İnci Kolye Ucu ve Küpe 1600 TL.jpg",
+      description: "925 ayar inci kolye ucu ve küpe takım seti, zarif ve sofistike tasarım.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Zarif"
+    },
+    { 
+      id: 23, 
+      name: "925 Ayar Yıldız Küpe ve Kolye Ucu", 
+      price: 1800,
+      priceDisplay: "1800.00 ₺", 
+      image: "/images/products/kupe/925 Ayar Yıldız Küpe ve Kolye Ucu 1800 TL.jpg",
+      description: "925 ayar yıldız küpe ve kolye ucu takım seti, romantik ve şık tasarım.",
+      category: "Takım",
+      material: "Gümüş",
+      style: "Romantik"
     }
   ];
 
@@ -382,6 +422,7 @@ function ProductList() {
               <option value="Kolye">Kolye</option>
               <option value="Küpe">Küpe</option>
               <option value="Bilezik">Bilezik</option>
+              <option value="Takım">Takım</option>
             </select>
           </div>
 
@@ -390,6 +431,7 @@ function ProductList() {
             <select value={selectedMaterial} onChange={(e) => setSelectedMaterial(e.target.value)}>
               <option value="Tümü">Tümü</option>
               <option value="Gümüş">Gümüş</option>
+              <option value="Rose Gold">Rose Gold</option>
               <option value="Altın">Altın</option>
               <option value="Çelik">Çelik</option>
             </select>

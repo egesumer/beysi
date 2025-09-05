@@ -50,10 +50,6 @@ function Modal({ isOpen, onClose, product }) {
                 </div>
               </div>
             </div>
-            <div className="modal-actions">
-              <button className="action-button primary">Sepete Ekle</button>
-              <button className="action-button secondary">Favorilere Ekle</button>
-            </div>
           </div>
         </div>
       </div>

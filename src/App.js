@@ -6,19 +6,19 @@ function App() {
     const slides = [
         {
           id: 1,
-          image: "https://images.unsplash.com/photo-1515562141207-7cf88c5d4b3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+          image: "/images/products/takim/925 Ayar Gümüş Küpe ve Kolye 2500 TL.jpg",
           text: "Yeni Sezon Aksesuarlar",
           subtitle: "Stilinizi tamamlayan özel parçalar"
         },
         {
           id: 2,
-          image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+          image: "/images/products/takim/925 Ayar Gümüş Margazit Takım Modeli 2600 TL.jpg",
           text: "Zarif ve Zamansız Tasarımlar",
           subtitle: "Her anınızda şıklığınızı yansıtın"
         },
         {
           id: 3,
-          image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+          image: "/images/products/takim/925 Ayar Gümüş Safir Pırlanta Modeli 2500 tl.jpg",
           text: "Işıltılı Koleksiyonlar",
           subtitle: "Özel günleriniz için özel tasarımlar"
         }
@@ -28,6 +28,7 @@ function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showOrderModal, setShowOrderModal] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -130,6 +131,42 @@ function App() {
         </div>
       </section>
       
+      {/* Floating Sipariş Butonu */}
+      <div className="floating-order-button" onClick={() => setShowOrderModal(true)}>
+        <span className="order-text">Sipariş Ver</span>
+      </div>
+
+      {/* Sipariş Modal */}
+      {showOrderModal && (
+        <div className="order-modal-overlay" onClick={() => setShowOrderModal(false)}>
+          <div className="order-modal-content" onClick={e => e.stopPropagation()}>
+            <button className="close-button" onClick={() => setShowOrderModal(false)}>×</button>
+            <h2>Sipariş Bilgileri</h2>
+            <p>Ürünlerimizi sipariş etmek için aşağıdaki kanallardan bizimle iletişime geçebilirsiniz:</p>
+            
+                                <div className="contact-options">
+                        <a href="https://www.instagram.com/beysitaki" target="_blank" rel="noopener noreferrer" className="contact-option instagram">
+                            <span className="contact-icon">📷</span>
+                            <div>
+                                <h3>Instagram</h3>
+                                <p>@beysitaki</p>
+                            </div>
+                        </a>
+                    </div>
+            
+            <div className="order-instructions">
+              <h3>Nasıl Sipariş Veririm?</h3>
+              <ol>
+                <li>Beğendiğiniz ürünü seçin</li>
+                <li>Ürün fotoğrafını paylaşın</li>
+                <li>Adres bilgilerinizi verin</li>
+                <li>Ödeme yöntemini seçin</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      )}
+
       <footer id="contact">
         <div className="footer-content">
           <div className="footer-section">
@@ -139,15 +176,12 @@ function App() {
           <div className="footer-section">
             <h4>İletişim</h4>
             <p><span className="contact-icon email-icon"></span>info@beysiaccessories.com</p>
-            <p><span className="contact-icon phone-icon"></span>+90 123 456 7890</p>
             <p><span className="contact-icon location-icon"></span>İstanbul, Türkiye</p>
           </div>
           <div className="footer-section">
             <h4>Sosyal Medya</h4>
             <div className="social-icons">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+              <a href="https://www.instagram.com/beysitaki" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
           </div>
           <div className="footer-bottom">
