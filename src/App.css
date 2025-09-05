@@ -1344,6 +1344,14 @@ footer::before {
   white-space: nowrap;
 }
 
+@media (max-width: 768px) {
+  .order-text {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+  }
+}
+
 @keyframes pulse {
   0% {
     box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
@@ -1491,6 +1499,8 @@ footer::before {
     font-size: 14px;
     min-height: 44px; /* iOS minimum touch target */
     min-width: 120px; /* Yazı için daha geniş */
+    flex-direction: column;
+    gap: 4px;
   }
   
   .order-text {
