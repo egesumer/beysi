@@ -1490,11 +1490,12 @@ footer::before {
     padding: 12px 16px;
     font-size: 14px;
     min-height: 44px; /* iOS minimum touch target */
-    min-width: 44px;
+    min-width: 120px; /* Yazı için daha geniş */
   }
   
   .order-text {
-    display: none;
+    display: block;
+    font-size: 12px;
   }
   
   .order-icon {
