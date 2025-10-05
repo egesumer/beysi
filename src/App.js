@@ -19,8 +19,8 @@ function App() {
         {
           id: 3,
           image: "/images/slideshow/slide3.png",
-          text: "Pırlanta Avize Küpe",
-          subtitle: "Işıltının büyüleyici dansı"
+          text: "Markazit Çiçek Takımı",
+          subtitle: "Zarif çiçek deseninin büyüsü"
         }
       ];
       
