@@ -6,21 +6,21 @@ function App() {
     const slides = [
         {
           id: 1,
-          image: "/images/products/takim/925 Ayar Gümüş Küpe ve Kolye 2500 TL.jpg",
-          text: "Yeni Sezon Aksesuarlar",
-          subtitle: "Stilinizi tamamlayan özel parçalar"
+          image: "/images/slideshow/slide1.png",
+          text: "Safir Pırlanta Koleksiyonu",
+          subtitle: "Mavi taşların büyüleyici ışıltısı"
         },
         {
           id: 2,
-          image: "/images/products/takim/925 Ayar Gümüş Margazit Takım Modeli 2600 TL.jpg",
-          text: "Zarif ve Zamansız Tasarımlar",
-          subtitle: "Her anınızda şıklığınızı yansıtın"
+          image: "/images/slideshow/slide2.png",
+          text: "Turkuaz Markazit Takımı",
+          subtitle: "Doğal taşların zarif uyumu"
         },
         {
           id: 3,
-          image: "/images/products/takim/925 Ayar Gümüş Safir Pırlanta Modeli 2500 tl.jpg",
-          text: "Işıltılı Koleksiyonlar",
-          subtitle: "Özel günleriniz için özel tasarımlar"
+          image: "/images/slideshow/slide3.png",
+          text: "Pırlanta Avize Küpe",
+          subtitle: "Işıltının büyüleyici dansı"
         }
       ];
       
@@ -29,6 +29,7 @@ function App() {
   const [isFading, setIsFading] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showOrderModal, setShowOrderModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,6 +55,15 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Loading ekranını 2.5 saniye sonra kaldır
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -64,14 +74,38 @@ function App() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="loading-screen">
+        <div className="loading-container">
+          <div className="loading-logo">
+            <img src="/images/logo.png" alt="Beysi Silver Jewelry" className="spinning-logo" />
+          </div>
+          <div className="loading-text">
+            <h2>Beysi Jewelry</h2>
+            <p>Zarafetin Işıltısı</p>
+          </div>
+          <div className="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <div className="left-decoration"></div>
       <div className="right-decoration"></div>
       
       <header>
-        <h1>Beysi Accessories</h1>
-        <p>Stilinizde Yeni Bir Işıltı</p>
+        <div className="logo-container">
+          <img src="/images/logo.png" alt="Beysi Silver Jewelry" className="brand-logo" />
+        </div>
+        <h1>Beysi Jewelry</h1>
+        <p>Zarafetin Işıltısı</p>
       </header>
       
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
@@ -170,8 +204,8 @@ function App() {
       <footer id="contact">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>Beysi Accessories</h3>
-            <p>Stilinizi tamamlayan özel aksesuarlar</p>
+            <h3>Beysi Jewelry</h3>
+            <p>Zarafetin Işıltısı</p>
           </div>
           <div className="footer-section">
             <h4>İletişim</h4>
@@ -185,7 +219,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2025 Beysi Accessories. Tüm hakları saklıdır.</p>
+            <p>&copy; 2025 Beysi Jewelry. Tüm hakları saklıdır.</p>
           </div>
         </div>
       </footer>

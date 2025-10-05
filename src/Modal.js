@@ -25,7 +25,13 @@ function Modal({ isOpen, onClose, product }) {
               style={{ cursor: 'zoom-in' }}
             />
             <div className="modal-image-overlay">
-              <div className="zoom-indicator">🔍 Büyütmek için tıklayın</div>
+              <div 
+                className="zoom-indicator"
+                onClick={e => { e.stopPropagation(); setZoomOpen(true); }}
+                style={{ cursor: 'pointer' }}
+              >
+                Büyütmek için tıklayın
+              </div>
             </div>
           </div>
           <div className="modal-details">
