@@ -1087,6 +1087,10 @@ footer::before {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
   }
   
+  .slide {
+    object-position: center 30%;
+  }
+  
   .slide-content {
     padding: 1.8rem 1.2rem;
     border-radius: 0 0 18px 18px;
@@ -1344,6 +1348,10 @@ footer::before {
     height: 280px;
   }
   
+  .slide {
+    object-position: center 25%;
+  }
+  
   .slide-content {
     padding: 2rem 1.5rem;
   }
@@ -1436,6 +1444,10 @@ footer::before {
   .slide-container {
     height: 260px;
     border-radius: 15px;
+  }
+  
+  .slide {
+    object-position: center 20%;
   }
   
   .slide-content {
