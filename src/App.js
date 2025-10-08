@@ -35,6 +35,7 @@ function App() {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -89,11 +90,17 @@ function App() {
   };
 
   const nextSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 300);
   };
 
   const prevSlide = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 300);
   };
 
   // Touch gesture handlers
@@ -107,7 +114,7 @@ function App() {
   };
 
   const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    if (!touchStart || !touchEnd || isTransitioning) return;
     
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
@@ -231,7 +238,7 @@ function App() {
               </button>
               
               <div 
-                className="slide-modal-image-container"
+                className={`slide-modal-image-container ${isTransitioning ? 'transitioning' : ''}`}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -239,9 +246,9 @@ function App() {
                 <img 
                   src={slides[currentSlideIndex].image} 
                   alt={`Slide ${slides[currentSlideIndex].id}`} 
-                  className="slide-modal-image"
+                  className={`slide-modal-image ${isTransitioning ? 'fade-transition' : ''}`}
                 />
-                <div className="slide-modal-info">
+                <div className={`slide-modal-info ${isTransitioning ? 'slide-up' : ''}`}>
                   <h3>{slides[currentSlideIndex].text}</h3>
                   <p>{slides[currentSlideIndex].subtitle}</p>
                 </div>
