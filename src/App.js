@@ -98,7 +98,7 @@ function App() {
       setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
     }, 50);
     
-    setTimeout(() => setIsTransitioning(false), 1000);
+    setTimeout(() => setIsTransitioning(false), 500);
   };
 
   const prevSlide = () => {
@@ -110,7 +110,7 @@ function App() {
       setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
     }, 50);
     
-    setTimeout(() => setIsTransitioning(false), 1000);
+    setTimeout(() => setIsTransitioning(false), 500);
   };
 
   // Touch gesture handlers
