@@ -654,21 +654,39 @@ header p {
 }
 
 .slide-modal-image-container.transitioning {
-  animation: containerPulse 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: containerPulse 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @keyframes containerPulse {
   0% {
-    transform: scale(1);
+    transform: scale(1) rotateZ(0deg);
     box-shadow: 0 25px 80px rgba(209, 155, 162, 0.2);
+    filter: brightness(1);
+  }
+  15% {
+    transform: scale(0.95) rotateZ(-1deg);
+    box-shadow: 0 20px 60px rgba(209, 155, 162, 0.15);
+    filter: brightness(0.95);
   }
   30% {
-    transform: scale(0.96);
-    box-shadow: 0 15px 50px rgba(209, 155, 162, 0.1);
+    transform: scale(0.92) rotateZ(0.5deg);
+    box-shadow: 0 15px 40px rgba(209, 155, 162, 0.1);
+    filter: brightness(0.9);
+  }
+  50% {
+    transform: scale(0.94) rotateZ(-0.3deg);
+    box-shadow: 0 18px 50px rgba(209, 155, 162, 0.12);
+    filter: brightness(0.95);
+  }
+  70% {
+    transform: scale(0.98) rotateZ(0.2deg);
+    box-shadow: 0 22px 65px rgba(209, 155, 162, 0.18);
+    filter: brightness(1.02);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1) rotateZ(0deg);
     box-shadow: 0 25px 80px rgba(209, 155, 162, 0.2);
+    filter: brightness(1);
   }
 }
 
@@ -684,30 +702,40 @@ header p {
 }
 
 .slide-modal-image.fade-transition {
-  animation: slideFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: slideFadeIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   animation-fill-mode: both;
 }
 
 @keyframes slideFadeIn {
   0% {
     opacity: 0;
-    transform: scale(0.8) translateY(30px) rotateX(15deg);
-    filter: blur(8px);
+    transform: scale(0.7) translateY(50px) rotateX(25deg) rotateY(10deg);
+    filter: blur(12px) brightness(0.8);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
   }
-  30% {
-    opacity: 0.3;
-    transform: scale(0.85) translateY(25px) rotateX(12deg);
-    filter: blur(6px);
+  20% {
+    opacity: 0.2;
+    transform: scale(0.8) translateY(35px) rotateX(18deg) rotateY(6deg);
+    filter: blur(8px) brightness(0.9);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
   }
-  60% {
+  40% {
+    opacity: 0.5;
+    transform: scale(0.9) translateY(20px) rotateX(10deg) rotateY(3deg);
+    filter: blur(4px) brightness(0.95);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  }
+  70% {
     opacity: 0.8;
-    transform: scale(0.98) translateY(8px) rotateX(3deg);
-    filter: blur(2px);
+    transform: scale(0.98) translateY(5px) rotateX(2deg) rotateY(1deg);
+    filter: blur(1px) brightness(1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateY(0) rotateX(0deg);
-    filter: blur(0px);
+    transform: scale(1) translateY(0) rotateX(0deg) rotateY(0deg);
+    filter: blur(0px) brightness(1);
+    box-shadow: 0 25px 80px rgba(209, 155, 162, 0.2);
   }
 }
 
@@ -722,24 +750,39 @@ header p {
 }
 
 .slide-modal-info.slide-up {
-  animation: slideUpIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+  animation: slideUpIn 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s both;
 }
 
 @keyframes slideUpIn {
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(0.9);
-    filter: blur(4px);
+    transform: translateY(60px) scale(0.8) rotateX(15deg);
+    filter: blur(8px) brightness(0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  30% {
+    opacity: 0.3;
+    transform: translateY(30px) scale(0.9) rotateX(8deg);
+    filter: blur(4px) brightness(0.85);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
   }
   60% {
-    opacity: 0.8;
-    transform: translateY(-5px) scale(1.02);
-    filter: blur(1px);
+    opacity: 0.7;
+    transform: translateY(-8px) scale(1.05) rotateX(-2deg);
+    filter: blur(1px) brightness(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  80% {
+    opacity: 0.9;
+    transform: translateY(2px) scale(1.02) rotateX(1deg);
+    filter: blur(0px) brightness(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0px);
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0px) brightness(1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
 }
 
@@ -804,11 +847,18 @@ header p {
 @keyframes indicatorsFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.5);
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-5px) scale(1.1);
+    filter: blur(1px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
   }
 }
 
