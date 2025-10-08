@@ -30,6 +30,11 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isSlideModalOpen, setIsSlideModalOpen] = useState(false);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -74,6 +79,47 @@ function App() {
     }
   };
 
+  const openSlideModal = (slideIndex) => {
+    setCurrentSlideIndex(slideIndex);
+    setIsSlideModalOpen(true);
+  };
+
+  const closeSlideModal = () => {
+    setIsSlideModalOpen(false);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  // Touch gesture handlers
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="loading-screen">
@@ -108,7 +154,7 @@ function App() {
         <p>Zarafetin Işıltısı</p>
       </header>
       
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isFilterOpen ? 'hidden' : ''}`}>
         <a href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>Anasayfa</a>
         <a href="#products" onClick={(e) => { e.preventDefault(); scrollToSection('products'); }}>Ürünler</a>
         <a href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>Hakkımızda</a>
@@ -116,15 +162,18 @@ function App() {
       </nav>
 
       <div id="home" className="slideshow">
-        <div className="slide-container">
+        <div className="slide-container" onClick={() => openSlideModal(currentSlide)}>
           <img 
             src={slides[currentSlide].image} 
             alt={`Slide ${slides[currentSlide].id}`} 
-            className={`slide ${isFading ? 'fade-out' : 'fade-in'}`} 
+            className={`slide ${isFading ? 'fade-out' : 'fade-in'} clickable`} 
           />
           <div className="slide-content">
             <h2 className="slide-title">{slides[currentSlide].text}</h2>
             <p className="slide-subtitle">{slides[currentSlide].subtitle}</p>
+          </div>
+          <div className="slide-overlay">
+            <p>Detayları görmek için tıklayın</p>
           </div>
         </div>
         <div className="slide-indicators">
@@ -149,7 +198,7 @@ function App() {
           <h2>Koleksiyonumuz</h2>
           <p>Her tarz için özel tasarımlar</p>
         </div>
-        <ProductList />
+        <ProductList onFilterToggle={setIsFilterOpen} />
       </section>
       
       <section id="about" style={{ padding: '4rem 2rem', textAlign: 'center' }}>
@@ -169,6 +218,52 @@ function App() {
       <div className="floating-order-button" onClick={() => setShowOrderModal(true)}>
         <span className="order-text">Sipariş Ver</span>
       </div>
+
+      {/* Slideshow Modal */}
+      {isSlideModalOpen && (
+        <div className="slide-modal-overlay" onClick={closeSlideModal}>
+          <div className="slide-modal-content" onClick={e => e.stopPropagation()}>
+            <button className="slide-modal-close" onClick={closeSlideModal}>×</button>
+            
+            <div className="slide-modal-container">
+              <button className="slide-nav-btn prev-btn" onClick={prevSlide}>
+                <span>‹</span>
+              </button>
+              
+              <div 
+                className="slide-modal-image-container"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <img 
+                  src={slides[currentSlideIndex].image} 
+                  alt={`Slide ${slides[currentSlideIndex].id}`} 
+                  className="slide-modal-image"
+                />
+                <div className="slide-modal-info">
+                  <h3>{slides[currentSlideIndex].text}</h3>
+                  <p>{slides[currentSlideIndex].subtitle}</p>
+                </div>
+              </div>
+              
+              <button className="slide-nav-btn next-btn" onClick={nextSlide}>
+                <span>›</span>
+              </button>
+            </div>
+            
+            <div className="slide-modal-indicators">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`slide-modal-indicator ${index === currentSlideIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentSlideIndex(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Sipariş Modal */}
       {showOrderModal && (

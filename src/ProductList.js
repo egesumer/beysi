@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './ProductList.css';
 import Modal from './Modal';
 
-function ProductList() {
+function ProductList({ onFilterToggle }) {
   const products = [
     // KOLYE ÜRÜNLERİ
     { 
@@ -272,6 +272,7 @@ function ProductList() {
   const [selectedStyle, setSelectedStyle] = useState('Tümü');
   const [priceRange, setPriceRange] = useState('Tümü');
   const [sortBy, setSortBy] = useState('En Yeni');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
@@ -405,76 +406,98 @@ function ProductList() {
     setSortBy('En Yeni');
   };
 
+  const toggleFilter = () => {
+    const newState = !isFilterOpen;
+    setIsFilterOpen(newState);
+    if (onFilterToggle) {
+      onFilterToggle(newState);
+    }
+  };
+
+  const closeFilter = () => {
+    setIsFilterOpen(false);
+    if (onFilterToggle) {
+      onFilterToggle(false);
+    }
+  };
+
   return (
     <div className="product-list-wrapper">
-      {/* Filtreleme Paneli */}
-      <div className="filter-panel">
-        <div className="filter-header">
-          <h3>Ürün Filtreleme</h3>
-          <button onClick={clearFilters} className="clear-filters">Filtreleri Temizle</button>
+      {/* Hamburger Menü */}
+      <button className={`hamburger-menu ${isFilterOpen ? 'hidden' : ''}`} onClick={toggleFilter}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Ürün Başlığı */}
+      <div className="product-section-header">
+        <h2>Koleksiyonumuz</h2>
+        <p className="product-count">{sortedProducts.length} ürün bulundu</p>
+      </div>
+
+      {/* Sidebar Filtreleme */}
+      <div className={`filter-sidebar ${isFilterOpen ? 'open' : ''}`}>
+        <div className="sidebar-header">
+          <h3>Kategoriler</h3>
+          <button className="close-sidebar" onClick={closeFilter}>×</button>
         </div>
         
-        <div className="filter-controls">
-          <div className="filter-group">
-            <label>Kategori:</label>
-            <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>
-              <option value="Tümü">Tümü</option>
-              <option value="Kolye">Kolye</option>
-              <option value="Küpe">Küpe</option>
-              <option value="Bilezik">Bilezik</option>
-              <option value="Takım">Takım</option>
-            </select>
+        <div className="sidebar-content">
+          <div className="category-filters">
+            <button 
+              className={`category-btn ${selectedCategory === 'Tümü' ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory('Tümü');
+                closeFilter();
+              }}
+            >
+              Tümü
+            </button>
+            <button 
+              className={`category-btn ${selectedCategory === 'Kolye' ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory('Kolye');
+                closeFilter();
+              }}
+            >
+              Kolye
+            </button>
+            <button 
+              className={`category-btn ${selectedCategory === 'Küpe' ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory('Küpe');
+                closeFilter();
+              }}
+            >
+              Küpe
+            </button>
+            <button 
+              className={`category-btn ${selectedCategory === 'Bilezik' ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory('Bilezik');
+                closeFilter();
+              }}
+            >
+              Bilezik
+            </button>
+            <button 
+              className={`category-btn ${selectedCategory === 'Takım' ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedCategory('Takım');
+                closeFilter();
+              }}
+            >
+              Takım
+            </button>
           </div>
-
-          <div className="filter-group">
-            <label>Malzeme:</label>
-            <select value={selectedMaterial} onChange={(e) => setSelectedMaterial(e.target.value)}>
-              <option value="Tümü">Tümü</option>
-              <option value="Gümüş">Gümüş</option>
-              <option value="Rose Gold">Rose Gold</option>
-              <option value="Altın">Altın</option>
-              <option value="Çelik">Çelik</option>
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Stil:</label>
-            <select value={selectedStyle} onChange={(e) => setSelectedStyle(e.target.value)}>
-              <option value="Tümü">Tümü</option>
-              <option value="Modern">Modern</option>
-              <option value="Vintage">Vintage</option>
-              <option value="Minimalist">Minimalist</option>
-              <option value="Zarif">Zarif</option>
-              <option value="Feminen">Feminen</option>
-              <option value="Romantik">Romantik</option>
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Fiyat Aralığı:</label>
-            <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)}>
-              <option value="Tümü">Tümü</option>
-              <option value="0-1000">0 - 1000 TL</option>
-              <option value="1000-2000">1000 - 2000 TL</option>
-              <option value="2000-3000">2000 - 3000 TL</option>
-              <option value="3000+">3000+ TL</option>
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Sırala:</label>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-              <option value="En Yeni">En Yeni</option>
-              <option value="Fiyat (Düşük-Yüksek)">Fiyat (Düşük-Yüksek)</option>
-              <option value="Fiyat (Yüksek-Düşük)">Fiyat (Yüksek-Düşük)</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="filter-results">
-          <p>{sortedProducts.length} ürün bulundu</p>
         </div>
       </div>
+
+      {/* Overlay */}
+      {isFilterOpen && (
+        <div className="sidebar-overlay" onClick={closeFilter}></div>
+      )}
 
       {/* Ürün Listesi */}
       <div className={`product-list`}>
