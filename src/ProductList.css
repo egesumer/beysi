@@ -50,18 +50,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 229, 226, 0.9) 100%);
-  border: 2px solid rgba(209, 155, 162, 0.2);
-  border-radius: 10px;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 229, 226, 0.95) 50%, rgba(255, 255, 255, 0.98) 100%);
+  border: 1px solid rgba(209, 155, 162, 0.3);
+  border-radius: 12px;
   cursor: pointer;
-  padding: 0.6rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(209, 155, 162, 0.2);
-  backdrop-filter: blur(10px);
+  padding: 0.7rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(209, 155, 162, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
   opacity: 1;
   visibility: visible;
+  position: relative;
+  overflow: hidden;
 }
 
 .hamburger-menu.hidden {
@@ -73,22 +75,27 @@
 
 .hamburger-menu span {
   width: 100%;
-  height: 3.5px;
-  background: linear-gradient(135deg, #d19ba2, #c08a91);
-  border-radius: 2px;
-  transition: all 0.3s ease;
+  height: 3px;
+  background: linear-gradient(135deg, #d19ba2 0%, #c08a91 50%, #d19ba2 100%);
+  border-radius: 3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(209, 155, 162, 0.3);
 }
 
 .hamburger-menu:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(209, 155, 162, 0.3);
-  border-color: rgba(209, 155, 162, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 12px 35px rgba(209, 155, 162, 0.25), 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: rgba(209, 155, 162, 0.5);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(248, 229, 226, 0.98) 50%, rgba(255, 255, 255, 1) 100%);
 }
 
 .hamburger-menu:hover span {
-  background: linear-gradient(135deg, #c08a91, #b07980);
+  background: linear-gradient(135deg, #c08a91 0%, #d19ba2 50%, #c08a91 100%);
+  box-shadow: 0 2px 6px rgba(209, 155, 162, 0.4);
 }
+
 
 /* Product Section Header */
 .product-section-header {
@@ -1023,11 +1030,11 @@ body.pagination-active {
   .hamburger-menu {
     top: 1.5rem;
     left: 0;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     z-index: 1002;
-    padding: 0.7rem;
-    border-radius: 0 12px 12px 0;
+    padding: 0.8rem;
+    border-radius: 0 14px 14px 0;
     /* iOS touch target minimum 44px */
     min-width: 44px;
     min-height: 44px;
@@ -1262,11 +1269,11 @@ body.pagination-active {
   .hamburger-menu {
     top: 1rem;
     left: 0;
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     z-index: 1002;
-    padding: 0.8rem;
-    border-radius: 0 14px 14px 0;
+    padding: 0.9rem;
+    border-radius: 0 16px 16px 0;
     /* iOS touch target minimum 44px */
     min-width: 44px;
     min-height: 44px;
