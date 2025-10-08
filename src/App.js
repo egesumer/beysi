@@ -92,14 +92,24 @@ function App() {
   const nextSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+    
+    // Smooth transition for loop
+    setTimeout(() => {
+      setCurrentSlideIndex((prev) => (prev + 1) % slides.length);
+    }, 50);
+    
     setTimeout(() => setIsTransitioning(false), 800);
   };
 
   const prevSlide = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    
+    // Smooth transition for loop
+    setTimeout(() => {
+      setCurrentSlideIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    }, 50);
+    
     setTimeout(() => setIsTransitioning(false), 800);
   };
 
